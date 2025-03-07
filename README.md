@@ -50,12 +50,6 @@ $ pnpm run start:prod
 ```bash
 # unit tests
 $ pnpm run test
-
-# e2e tests
-$ pnpm run test:e2e
-
-# test coverage
-$ pnpm run test:cov
 ```
 
 ## Src Folders
@@ -74,7 +68,7 @@ $ pnpm run test:cov
    * Worker (It includes CronJob which receives data from API and then converts it into a job type and finally stores it in the database)
 
 4. Queries
-   Input Queries of App Controller
+   * Input Queries of App Controller
 
 ### Attention: Settings of Database, Cronjob and swagger are in the .env file.
 - You need to create a database named "devotel-test" in your db, or you can change the database name in the .env file.
