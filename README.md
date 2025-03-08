@@ -37,12 +37,6 @@ $ pnpm install
 ```bash
 # development
 $ pnpm run start
-
-# watch mode
-$ pnpm run start:dev
-
-# production mode
-$ pnpm run start:prod
 ```
 
 ## Test
@@ -53,23 +47,81 @@ $ pnpm run test
 ```
 
 ## Src Folders
-
+```html
 1. Filter
-   * Global Exception
+    * Global Exception
 
 2. Interceptors
-   * Manages the output structure of APIs.
+    * Manages the output structure of APIs.
 
 3. Packages
-   The main body of the Application, Includes:
-   * API (Get data from APIs)
-   * Data-Transform (Convert data that get from api to job type)
-   * Database (It includes Entity and Repository of job table that store jobs)
-   * Worker (It includes CronJob which receives data from API and then converts it into a job type and finally stores it in the database)
+    The main body of the Application, Includes:
+    * API (Get data from APIs)
+    * Data-Transform (Convert data that get from api to job type)
+    * Database (It includes Entity and Repository of job table that store jobs)
+    * Worker (It includes CronJob which receives data from API and then converts it into a job type and finally stores it in the database)
 
 4. Queries
-   * Input Queries of App Controller
-
-### Attention: Settings of Database, Cronjob and swagger are in the .env file.
-- You need to create a database named "devotel-test" in your db, or you can change the database name in the .env file.
+    * Input Queries of App Controller
+```
+ 
+## Attentions: Settings of Database, Cronjob and swagger are in the .env file.
+```html
 - Please rename .env.example to .env for using .env file.
+- You need to create a database named "devotel-test" in your db, or you can change the database name in the .env file.
+```
+
+## Example API
+#### Url Path
+```http request
+Path: /api/job-offers
+```
+#### Query String Url
+```http request
+title=back&location=NY&minSalary=60000&maxSalary=113000&page=1&limit=20
+```
+
+#### Query String Json
+```json
+{
+    "title": "back",
+    "location": "NY",
+    "minSalary": 60000,
+    "maxSalary": 113000,
+    "page": 1,
+    "limit": 20
+}
+```
+
+#### Response
+```json
+{
+    "code": 200,
+    "time": 1741423976061,
+    "data": {
+        "list": [
+            {
+                "created_date": "2025-03-08 12:17:00.694647",
+                "updated_date": "2025-03-08 12:17:00.694647",
+                "deleted_date": null,
+                "id": "job-218",
+                "title": "Backend Engineer",
+                "location": "Seattle, NY",
+                "type": "Remote",
+                "minSalary": 71000,
+                "maxSalary": 113000,
+                "currency": "USD",
+                "companyName": "Creative Design Ltd",
+                "companyIndustry": null,
+                "companyWebsite": "https://dataworks.com",
+                "experience": 4,
+                "skills": ["HTML", "CSS", "Vue.js"],
+                "postedDate": "2025-03-04"
+            }
+        ],
+        "total": 1,
+        "page": 1,
+        "limit": 20
+    }
+}
+```

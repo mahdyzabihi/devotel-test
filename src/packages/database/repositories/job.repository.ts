@@ -19,25 +19,26 @@ export class JobRepository extends Repository<JobEntity> {
 		const query = this.createQueryBuilder('job');
 
 		if (title)
-			query.where(`title LIKE '%:title%'`, {
-				title: title,
+			query.where('job.title LIKE :title', {
+				title: `%${title}%`,
 			});
 
 		if (location)
-			query.andWhere(`location LIKE '%:location%'`, {
-				location: location,
+			query.andWhere('job.location LIKE :location', {
+				location: `%${location}%`,
 			});
 
 		if (minSalary)
-			query.andWhere(`minSalary >= :minSalary`, {
+			query.andWhere('job.minSalary >= :minSalary', {
 				minSalary: minSalary,
 			});
 
 		if (maxSalary)
-			query.andWhere(`maxSalary <= :maxSalary`, {
+			query.andWhere('job.maxSalary <= :maxSalary', {
 				maxSalary: maxSalary,
 			});
 
+		console.log(query.getQueryAndParameters());
 		const [list, total] = await query
 			.skip((page - 1) * limit)
 			.take(limit)
